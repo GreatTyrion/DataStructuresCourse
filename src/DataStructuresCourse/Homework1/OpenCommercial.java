@@ -3,7 +3,9 @@ package DataStructuresCourse.Homework1;
 /* OpenCommercial.java */
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
 
 /**
  * A class that provides a main function to read five lines of a commercial
@@ -32,7 +34,26 @@ class OpenCommercial {
         System.out.flush();        /* Make sure the line is printed immediately. */
         inputLine = keyboard.readLine();
 
-        /* Replace this comment with your solution.  */
+        if (inputLine.equals("china-embassy")) {
+            return;
+        } else {
+            inputLine = "china-embassy";
+        }
 
+        String myURL = "http://www." + inputLine + ".org/eng/";
+
+        URL u = new URL(myURL);
+        InputStream ins = u.openStream();
+        InputStreamReader isr = new InputStreamReader(ins);
+        BufferedReader websiteContent = new BufferedReader(isr);
+
+        String[] arr = new String[]{"", "", "", "", ""};
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = websiteContent.readLine();
+        }
+
+        for (int i = arr.length - 1; i >= 0; i--) {
+            System.out.println(arr[i]);
+        }
     }
 }
